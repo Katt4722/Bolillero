@@ -1,10 +1,9 @@
 namespace Biblioteca;
-
 public class Bolillero
 {
-    public List<ListBolillas> Jugada { get; set; }; 
-    public List<Bolilla> bolillas;
-    public List<Bolilla> bolillasExtraidas;
+    public List<int> Jugada { get; set; }; 
+    public List<int> bolillas;
+    public List<int> bolillasExtraidas;
     private IAleatorio _aleatorio;
 
     public Bolillero(IAleatorio aleatorio)
@@ -21,7 +20,7 @@ public class Bolillero
 
     public int SacarBolilla()
     {
-        if (_bolillas.Count == 0) return -1; 
+        if (bolillas.Count == 0) return -1; 
 
         int index = _aleatorio.SacarAleatorio(bolillas.Count);
         int bolilla = bolillas[index];
@@ -34,4 +33,28 @@ public class Bolillero
         bolillas.AddRange(bolillasExtraidas);
         bolillasExtraidas.Clear();
     }
+    public bool Jugar(List<int> jugada)
+        {
+            List<int> bolillasSacadas = new List<int>();
+
+            foreach (var bolilla in jugada)
+            {
+                bolillasSacadas.Add(SacarBolilla());
+            }
+            return bolillasSacadas.SequenceEqual(jugada);
+        }
+
+    public int JugarNVeces(List<int> jugada, int veces)
+        {
+            int aciertos = 0;
+            for (int i = 0; i < veces; i++)
+            {
+                if (Jugar(jugada))
+                {
+                    aciertos++;
+                }
+                ReIngresarBolillas(); 
+            }
+            return aciertos;
+        }
 }

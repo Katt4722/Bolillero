@@ -6,7 +6,7 @@ public class Bolillero
     public List<int> bolillasExtraidas;
     private IAleatorio _aleatorio;
 
-    public Bolillero(IAleatorio aleatorio)
+    public  Bolillero(IAleatorio aleatorio)
     {
         _aleatorio = aleatorio;
         bolillas = new List<int>();

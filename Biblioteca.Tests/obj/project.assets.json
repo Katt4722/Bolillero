@@ -411,6 +411,16 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Biblioteca/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Biblioteca.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Biblioteca.dll": {}
+        }
       }
     }
   },
@@ -932,10 +942,16 @@
         "xunit.runner.visualstudio.2.8.2.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Biblioteca/1.0.0": {
+      "type": "project",
+      "path": "../Biblioteca/Biblioteca.csproj",
+      "msbuildProject": "../Biblioteca/Biblioteca.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Biblioteca >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "coverlet.collector >= 6.0.2",
       "xunit >= 2.9.2",
@@ -949,11 +965,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
+      "projectUniqueName": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
       "projectName": "Biblioteca.Tests",
-      "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
+      "projectPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
       "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\obj\\",
+      "outputPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -974,7 +990,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca\\Biblioteca.csproj": {
+              "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca\\Biblioteca.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

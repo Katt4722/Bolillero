@@ -1,7 +1,7 @@
 namespace Biblioteca;
 public class Bolillero
 {
-    public List<int> Jugada { get; set; }; 
+    public List<int> Jugada { get; set; }
     public List<int> bolillas;
     public List<int> bolillasExtraidas;
     private IAleatorio _aleatorio;

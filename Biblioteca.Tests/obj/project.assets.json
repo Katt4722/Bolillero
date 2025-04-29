@@ -965,11 +965,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
       "projectName": "Biblioteca.Tests",
-      "projectPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
+      "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\Biblioteca.Tests.csproj",
       "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\Bolillero\\Biblioteca.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

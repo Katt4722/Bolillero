@@ -5,7 +5,8 @@ public class TestBolillero
 
     public TestBolillero()
     {
-        var generadorAleatorio = new Aleatorio();
+        var secuencia = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
+        var generadorAleatorio = new Primero(secuencia);
         _bolillero = new Bolillero(generadorAleatorio);
     }
 
@@ -13,9 +14,9 @@ public class TestBolillero
     public void SacarBolilla()
     {
         int bolilla = _bolillero.SacarBolilla();
-        Assert.NotEqual(-1, bolilla);  // Se espera que la bolilla no sea -1
-        Assert.Single(_bolillero.bolillasExtraidas);  // Debe haber una bolilla extraída
-        Assert.Equal(9, _bolillero.bolillas.Count);  // Después de sacar una, quedan 9 bolillas
+        Assert.NotEqual(-1, bolilla);  
+        Assert.Single(_bolillero.bolillasExtraidas);  
+        Assert.Equal(9, _bolillero.bolillas.Count);  
     }
 
     [Fact]
@@ -24,8 +25,8 @@ public class TestBolillero
         int bolilla = _bolillero.SacarBolilla();
         _bolillero.ReIngresarBolillas();
 
-        Assert.Equal(10, _bolillero.bolillas.Count);  // Después de reingresar, deben haber 10 bolillas
-        Assert.Empty(_bolillero.bolillasExtraidas);  // Ya no debe haber bolillas extraídas
+        Assert.Equal(10, _bolillero.bolillas.Count);  
+        Assert.Empty(_bolillero.bolillasExtraidas);  
     }
 
 
@@ -34,7 +35,7 @@ public class TestBolillero
     {
         var jugada = new List<int> { 0, 1, 2, 3 };
         bool gano = _bolillero.Jugar(jugada);
-        Assert.False(gano);
+        Assert.True(gano);
     }
 
     [Fact]
@@ -42,7 +43,7 @@ public class TestBolillero
     {
         var jugada = new List<int> { 4, 2, 1 };
         bool gano = _bolillero.Jugar(jugada);
-        Assert.False(gano);  // Se espera que la jugada no haya ganado
+        Assert.False(gano);  
     }
 
     [Fact]
@@ -51,6 +52,6 @@ public class TestBolillero
         var jugada = new List<int> { 0, 1 };
         int veces = 1;
         int aciertos = _bolillero.JugarNVeces(jugada, veces);
-        Assert.Equal(1, aciertos);  // Se espera que haya ganado 1 vez. Revisarr
+        Assert.Equal(1, aciertos); 
     }
 }

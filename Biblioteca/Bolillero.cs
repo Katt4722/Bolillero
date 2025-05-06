@@ -1,8 +1,8 @@
 namespace Biblioteca;
-public class Bolillero
+public class Bolillero : ICloneable
 {
     public List<int> Jugada { get; set; }
-    public List<int> bolillas;
+    public List<int> bolillas ;
     public List<int> bolillasExtraidas;
     private IAleatorio _aleatorio;
 
@@ -17,7 +17,12 @@ public class Bolillero
             bolillas.Add(i);
         }
     }
-
+    public Bolillero(int cantidad)
+    {
+    _aleatorio = new Aleatorio();
+    bolillas = Enumerable.Range(0, cantidad).ToList();
+    bolillasExtraidas = new List<int>();
+    }
     public int SacarBolilla()
     {
         if (bolillas.Count == 0) return -1; 
@@ -57,4 +62,12 @@ public class Bolillero
             }
             return aciertos;
         }
+
+    public object Clone()
+    {
+        var bolilleroClonado = new Bolillero(_aleatorio);
+        bolilleroClonado.bolillas = new List<int>(this.bolillas);
+        bolilleroClonado.bolillasExtraidas = new List<int>(this.bolillasExtraidas);
+        return bolilleroClonado;
+    }
 }

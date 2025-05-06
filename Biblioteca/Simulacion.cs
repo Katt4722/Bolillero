@@ -34,7 +34,7 @@ public class Simulacion
     long totalAciertos = 0;
     foreach (var tarea in tareas)
     {
-        tarea.Wait(); // Esto espera que termine esa tarea
+        tarea.Wait(); 
         totalAciertos += tarea.Result;
     }
     return totalAciertos;

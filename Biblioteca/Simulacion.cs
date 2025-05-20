@@ -54,8 +54,8 @@ public class Simulacion
             }));
         }
 
-        long[] resultados = await Task.WhenAll(tareas);
-        return resultados.Sum();
+        await Task.WhenAll(tareas);
+        return tareas.Sum(t=>t.Result);
     }
 
 }

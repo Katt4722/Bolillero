@@ -39,4 +39,23 @@ public class Simulacion
     }
     return totalAciertos;
     }
+
+    public async Task<long> SimularConHilosAsync(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
+    {
+        var tareas = new List<Task<long>>();
+        int simulacionesPorHilo = cantidadSimulaciones / cantidadHilos;
+
+        for (int i = 0; i < cantidadHilos; i++)
+        {
+            tareas.Add(Task.Run(() =>
+            {
+                var bolilleroClonado = (Bolillero)bolillero.Clone();
+                return (long)bolilleroClonado.JugarNVeces(jugada, simulacionesPorHilo);
+            }));
+        }
+
+        long[] resultados = await Task.WhenAll(tareas);
+        return resultados.Sum();
+    }
+
 }

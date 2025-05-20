@@ -15,4 +15,17 @@ public class TestSimulacion
         double diferenciaRelativa = (double)Math.Abs(resultadoSinHilos - resultadoConHilos) / 1000;
         Assert.True(diferenciaRelativa < 0.1, "Los resultados con y sin hilos deben ser similares");
     }
+
+    [Fact]
+    public async Task SimularConHilosAsyncDevuelveResultadoEsperado()
+    {
+        var bolillero = new Bolillero(10);
+        var jugada = new List<int> { 1, 2, 3 };
+        var simulacion = new Simulacion();
+
+        long resultado = await simulacion.SimularConHilosAsync(bolillero, jugada, 1000, 4);
+
+        Assert.InRange(resultado, 0, 1000);
+    }
+
 }

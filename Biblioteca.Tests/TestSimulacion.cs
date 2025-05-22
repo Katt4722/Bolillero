@@ -28,4 +28,14 @@ public class TestSimulacion
         Assert.InRange(resultado, 0, 1000);
     }
 
+    [Fact]
+    public async Task SimularParallelAsyncDevuelveResultadoEsperado()
+    {
+        var bolillero = new Bolillero(10);
+        var jugada = new List<int> { 1, 2, 3 };
+        var simulacion = new Simulacion();
+
+        Assert.InRange(await simulacion.SimularParallelAsync(bolillero, jugada, 1000, 4), 0, 1000); 
+    }
+
 }

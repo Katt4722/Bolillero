@@ -1,4 +1,5 @@
 namespace Biblioteca;
+
 public class Simulacion
 {
     public long SimularSinHilos(Bolillero bolillero, List<int> jugada, long cantidadSimulaciones)
@@ -13,31 +14,31 @@ public class Simulacion
     }
     public long SimularConHilos(Bolillero bolillero, List<int> jugada, long cantidadSimulaciones, int cantidadHilos)
     {
-    var tareas = new List<Task<long>>();
-    long simulacionesPorHilo = cantidadSimulaciones / cantidadHilos;
+        var tareas = new List<Task<long>>();
+        long simulacionesPorHilo = cantidadSimulaciones / cantidadHilos;
 
-    for (int i = 0; i < cantidadHilos; i++)
-    {
-        tareas.Add(Task.Run(() =>
+        for (int i = 0; i < cantidadHilos; i++)
         {
-            long aciertos = 0;
-            var clon = (Bolillero)bolillero.Clone();
-            for (int j = 0; j < simulacionesPorHilo; j++)
+            tareas.Add(Task.Run(() =>
             {
-                if (clon.Jugar(jugada))
-                    aciertos++;
-            }
-            return aciertos;
-        }));
-    }
+                long aciertos = 0;
+                var clon = (Bolillero)bolillero.Clone();
+                for (int j = 0; j < simulacionesPorHilo; j++)
+                {
+                    if (clon.Jugar(jugada))
+                        aciertos++;
+                }
+                return aciertos;
+            }));
+        }
 
-    long totalAciertos = 0;
-    foreach (var tarea in tareas)
-    {
-        tarea.Wait(); 
-        totalAciertos += tarea.Result;
-    }
-    return totalAciertos;
+        long totalAciertos = 0;
+        foreach (var tarea in tareas)
+        {
+            tarea.Wait();
+            totalAciertos += tarea.Result;
+        }
+        return totalAciertos;
     }
 
     public async Task<long> SimularConHilosAsync(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
@@ -55,7 +56,20 @@ public class Simulacion
         }
 
         await Task.WhenAll(tareas);
-        return tareas.Sum(t=>t.Result);
+        return tareas.Sum(t => t.Result);
     }
+    public async Task<long> SimularParallelAsync(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
+    {
+        var resultados = new long[cantidadHilos];
+        await Task.Run(() =>
+        {
+            Parallel.For(0, cantidadHilos, i =>
+            {
+                var copia = (Bolillero)bolillero.Clone();
+                resultados[i] = cantidadSimulaciones / cantidadHilos;
+            });
 
+        });
+        return resultados.Sum();
+    }
 }
